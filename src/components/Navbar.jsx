@@ -3,7 +3,7 @@ import Logo from "../assets/logo.jpg";
 
 function Navbar() {
   return (
-      <div className="w-full mx-auto flex justify-between items-center p-4">
+      <div id="home" className="w-full  mx-auto flex justify-between items-center p-4">
         <img src={Logo} alt="Logo" className="h-10" />
         <ul className="flex gap-6 text-sm font-medium">
           <li><a href="#home">Home</a></li>

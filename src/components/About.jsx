@@ -57,7 +57,7 @@ function About() {
   ];
 
   return (
-    <div className="w-full"> 
+    <div id="about" className="w-full"> 
       {sections.map((section) => (
         <ParallaxSection key={section.title} {...section} />
       ))}

@@ -27,7 +27,7 @@ function ParallaxSection({ title, bg, content, images }) {
   return (
     <section
       ref={ref}
-      className="relative min-h-[500px] overflow-hidden flex items-center justify-center"
+      className="relative min-h-125 overflow-hidden flex items-center justify-center"
     >
       {/* Background */}
       <motion.div
