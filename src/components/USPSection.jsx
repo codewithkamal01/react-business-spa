@@ -35,7 +35,7 @@ function USPSection() {
   }, []);
 
   return (
-    <section className="relative h-180 flex items-center justify-center text-center overflow-hidden bg-black">
+    <section className="relative h-fit pb-5 pt-10 md:pt-0 md:h-180 flex items-center justify-center text-center overflow-hidden bg-black">
       {/* Particle Background */}
       {init && (
         <Particles
@@ -43,7 +43,7 @@ function USPSection() {
           options={{
             fullScreen: false,
             particles: {
-              number: { value: 40 },
+              number: { value: 60 },
               color: { value: "#00f2ff" },
               links: {
                 enable: true,
@@ -63,7 +63,7 @@ function USPSection() {
       <div className="relative z-10 text-white px-6">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
 
-        <p className="max-w-2xl mx-auto mb-20 text-gray-300">
+        <p className="max-w-2xl mx-auto mb-10 md:mb-15  text-gray-300">
           We stand out from our competitors by delivering consistent quality,
           cost-effective solutions, and a customer-first approach in every
           project.

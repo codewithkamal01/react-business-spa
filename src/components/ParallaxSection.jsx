@@ -10,18 +10,18 @@ function ParallaxSection({ title, bg, content, images }) {
   });
 
   // Parallax movement (disable on mobile smoothly)
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  // const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-    isMobile ? [0, 0] : [-100, 100],
+     [-100, 100],
   );
 
   const scale = useTransform(
     scrollYProgress,
     [0, 1],
-    isMobile ? [1, 1] : [1.1, 1.25],
+    [1.1, 1.25],
   );
 
   return (
