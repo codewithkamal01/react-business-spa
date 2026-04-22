@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function ParallaxSection({ title, bg, content, images }) {
   const ref = useRef();
@@ -9,19 +9,28 @@ function ParallaxSection({ title, bg, content, images }) {
     offset: ["start end", "end start"],
   });
 
-  // Parallax movement (disable on mobile smoothly)
-  // const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const y = useTransform(
     scrollYProgress,
     [0, 1],
-     [-100, 100],
+    isMobile ? [-40, 40] : [-100, 100],
   );
 
   const scale = useTransform(
     scrollYProgress,
     [0, 1],
-    [1.1, 1.25],
+    isMobile ? [1.05, 1.1] : [1.1, 1.25],
   );
 
   return (
