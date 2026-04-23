@@ -1,82 +1,74 @@
-import React from "react";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
-import { useTheme, useMediaQuery } from "@mui/material";
+import React, { useState } from "react";
 
 function Gallery() {
-  const theme = useTheme();
+  const [selected, setSelected] = useState(null);
 
-  // Responsive breakpoints
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
-
-  const cols = isMobile ? 1 : isTablet ? 2 : 4;
-
-  const itemData = [
+  const images = [
     {
-      img: "https://imgs.search.brave.com/7xMUQ5jivwQ6KivWRj1J-vzjXPLMvP6DV9ypi0z_P-I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNzAv/NzAyLzg2Ny9zbWFs/bC9idXNpbmVzcy1h/bmFseXRpY3Mtb24t/dGFibGV0LWRpc3Bs/YXktZGF0YS12aXN1/YWxpemF0aW9uLWNo/YXJ0cy1hbmQtbWFy/a2V0LWFuYWx5c2lz/LWZvci1zdHJhdGVn/aWMtaW5zaWdodHMt/cGhvdG8uanBlZw",
-      title: "Analytics Dashboard",
-      rows: 2,
-      cols: 2,
+      img: "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+      title: "Team Collaboration",
     },
     {
-      img: "https://imgs.search.brave.com/viq5KQqeIlanNDJdfTuXm6DJYcJ_ErGmYgK-XZCLTUo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMjQv/NzUyLzY4My9zbWFs/bC93ZWJzaXRlLWRl/c2lnbi1vbi1hLWxh/cHRvcC1zY3JlZW4t/cGhvdG8uanBn",
-      title: "Web Design",
+      img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+      title: "Office Meeting",
     },
     {
-      img: "https://imgs.search.brave.com/EjMgBbB4rL6MOerOqHIFw0ie2L87iYovLrPKy2EjL4I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9jb2Rp/bmctY29kZS1wcm9n/cmFtLWNvbXB1dGUt/Y29kZXItZGV2ZWxv/cC1kZXZlbG9wZXIt/ZGV2ZWxvcG1lbnQt/cHJvZ3JhbW1pbmct/d2ViLXdvcmstZGVz/aWduLXNvZnR3YXJl/LWNsb3NldXAtZGVz/ay13cml0ZS04MDg2/Mjk5NS5qcGc",
-      title: "Development Work",
+      img: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+      title: "Work Culture",
+      short: true,
     },
     {
-      img: "https://imgs.search.brave.com/E7QjJF-8OyyfirTxSuK489GdnrdhuYJud8yuTzhuI38/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cHJvZC53ZWJzaXRl/LWZpbGVzLmNvbS81/ZThiZDJhYjhlNDhl/Njk0MjljYjRmZDgv/Njc2NjA4MDJmMTJi/YzU1ZWRkNjg1ZDAz/XzYyMzkxNmU0MzM2/NTZlODY3NGMzM2U0/Ml9wcm9qZWN0LW1h/bmFnZXIuanBlZw",
-      title: "Client Projects",
-      cols: 2,
+      img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      title: "Coding Session",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
+      title: "Client Discussion",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+      title: "Team Bonding",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1543269865-cbf427effbad",
+      title: "Office Party",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+      title: "Workspace Setup",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551434678-e076c223a692",
+      title: "Quick Standup Meeting",
     },
   ];
 
   return (
-    <div
-      id="gallery"
-      className="w-full px-4 md:px-6 bg-gradient-to-r from-gray-900 to-black text-white py-10"
-    >
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
+    <section id="gallery" className="py-10 px-4 bg-gray-900">
+      <h2 className="text-3xl text-white font-bold text-center mb-10">
         Our Work Gallery
       </h2>
 
-      <ImageList
-        variant="quilted"
-        cols={cols}
-        gap={10}
-        sx={{ width: "100%", margin: 0 }}
-      >
-        {itemData.map((item) => (
-          <ImageListItem
-            key={item.img}
-            cols={isMobile ? 1 : item.cols || 1}
-            rows={isMobile ? 1 : item.rows || 1}
-            className="overflow-hidden rounded-lg"
+      {/* GRID */}
+      <div className="max-w-6xl mx-auto columns-1 sm:columns-2 md:columns-3 gap-3 space-y-4">
+        {images.map((item, i) => (
+          <div
+            key={i}
+            className="relative overflow-hidden rounded-xl cursor-pointer group"
+            onClick={() => setSelected(item)}
           >
-            <div className="overflow-hidden rounded-lg">
-              <img
-                src={`${item.img}?w=500&fit=crop&auto=format`}
-                alt={item.title}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-              />
-            </div>
-
-            <ImageListItemBar
-              title={item.title}
-              sx={{
-                background:
-                  "linear-gradient(to top, rgba(0,0,0,0.7), transparent)",
-              }}
+            <img
+              src={item.img}
+              alt={item.title}
+              className="w-full object-cover rounded-xl transition duration-500 group-hover:scale-110"
             />
-          </ImageListItem>
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+              <p className="text-white text-sm font-medium">{item.title}</p>
+            </div>
+          </div>
         ))}
-      </ImageList>
-    </div>
+      </div>
+    </section>
   );
 }
 

@@ -20,7 +20,7 @@ function SpecialityCard() {
   ];
 
   return (
-    <div className="grid gap-6 md:grid-cols-3 px-4 md:px-10 py-8 p-6 bg-white shadow-md rounded-lg text-center hover:shadow-xl transition duration-300">
+    <div className="grid gap-7 md:grid-cols-3 px-10 md:px-40 py-8 bg-white shadow-md text-center hover:shadow-xl transition duration-300">
       {items.map((item, index) => (
         <div
           key={index}
