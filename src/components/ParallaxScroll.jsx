@@ -92,7 +92,8 @@ const cards = [
 //Card 
 function Card({ card, index }) {
   return (
-    <motion.div
+    <motion.div 
+      id="about"
       initial={{ opacity: 0, y: 64 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.25 }}
