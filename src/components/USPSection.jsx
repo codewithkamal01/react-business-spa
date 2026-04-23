@@ -35,7 +35,7 @@ function USPSection() {
   }, []);
 
   return (
-    <section className="relative h-fit pb-5 pt-10 md:pt-0 md:h-180 flex items-center justify-center text-center overflow-hidden bg-black">
+    <section className="relative h-fit pb-5 pt-10 md:pt-0 md:h-165 flex items-center justify-center text-center overflow-hidden bg-gradient-to-b from-black to-gray-900">
       {/* Particle Background */}
       {init && (
         <Particles

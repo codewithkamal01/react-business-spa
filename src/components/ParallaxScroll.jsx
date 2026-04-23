@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// ── Data ──────────────────────────────────────────────────────────────────────
+//Data 
 const cards = [
   {
     id: "01", label: "About", icon: "🏢", accent: "#4a9eff",
@@ -15,7 +15,7 @@ const cards = [
         <div className="flex gap-5 mt-4 pt-4 border-t border-white/[0.07]">
           {[["14+","Countries"],["2,400","Employees"],["₹840Cr","Revenue"],["16yrs","Experience"]].map(([n,l])=>(
             <div key={l}>
-              <div className="text-lg font-bold text-slate-100" style={{fontFamily:"'Playfair Display',serif"}}>{n}</div>
+              <div className="text-lg font-bold text-slate-100">{n}</div>
               <div className="text-[10px] text-slate-400/50 mt-0.5">{l}</div>
             </div>
           ))}
@@ -89,14 +89,14 @@ const cards = [
   },
 ];
 
-// ── Card ──────────────────────────────────────────────────────────────────────
+//Card 
 function Card({ card, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 48 }}
+      initial={{ opacity: 0, y: 64 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: false, amount: 0.25 }}
+      transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       className="relative rounded-2xl p-6 border border-white/10 overflow-hidden w-full max-w-lg"
       style={{ background: card.bg, backdropFilter: "blur(16px)" }}
     >
@@ -107,7 +107,7 @@ function Card({ card, index }) {
       <p className="text-[10px] font-medium tracking-[2px] uppercase mb-1.5" style={{ color: card.accent }}>
         {card.id} — {card.label}
       </p>
-      <h2 className="text-xl font-bold text-slate-100 mb-4" style={{ fontFamily: "'Playfair Display',serif" }}>
+      <h2 className="text-xl font-bold text-slate-100 mb-4">
         {card.title}
       </h2>
       {card.content}
@@ -115,53 +115,58 @@ function Card({ card, index }) {
   );
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────────
+//Main 
 export default function ParallaxScroll() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ container: ref });
-  const starsY  = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
-  const orbsY   = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const starsY  = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const orbsY   = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const hazeY   = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap');
-        .px::-webkit-scrollbar{width:4px}
-        .px::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:4px}
-        @keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
+        @import url('https://fonts.googleapis.com/css2?500&display=swap');
         .pulse{animation:pulse 2s infinite}
       `}</style>
 
-      <div ref={ref} className="px relative overflow-y-scroll bg-[#0b0e1a]"
-        style={{ height: "100vh", fontFamily: "'DM Sans',sans-serif" }}>
+      <section ref={ref} className="relative overflow-hidden bg-[#0b0e1a] min-h-screen py-14">
 
         {/* ── Parallax background ── */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ height: `${cards.length * 380}px` }}>
-          {/* Stars */}
-          <motion.svg style={{ y: starsY }} width="100%" height="100%"
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Far stars */}
+          <motion.svg style={{ y: starsY, willChange: "transform" }} width="100%" height="100%"
             className="absolute inset-0" xmlns="http://www.w3.org/2000/svg">
-            {Array.from({ length: 100 }, (_, i) => {
+            {Array.from({ length: 64 }, (_, i) => {
               const s = i * 137.508;
               const cx = ((s * 9301 + 49297) % 233280) / 233280 * 100;
               const cy = ((s * 4321 + 1234) % 233280) / 233280 * 100;
-              const r  = ((s * 1234) % 100) / 100 * 1.2 + 0.3;
+              const r  = ((s * 1234) % 100) / 100 * 1.3 + 0.25;
               const op = ((s * 5678) % 100) / 100 * 0.45 + 0.1;
               return <circle key={i} cx={`${cx}%`} cy={`${cy}%`} r={r} fill="#a0b4ff" opacity={op} />;
             })}
           </motion.svg>
 
-          {/* Glowing orbs */}
-          <motion.div style={{ y: orbsY }} className="absolute inset-0">
+          {/* Midground glow orbs */}
+          <motion.div style={{ y: orbsY, willChange: "transform" }} className="absolute inset-0">
             {[
-              { l:"10%", t:"4%",  w:200, c:"#1a2a6c" },
-              { l:"65%", t:"18%", w:160, c:"#3a1a6c" },
-              { l:"15%", t:"48%", w:180, c:"#0d3d40" },
-              { l:"62%", t:"74%", w:170, c:"#4a2010" },
+              { l:"8%",  t:"8%",  w:200, c:"#1a2a6c" },
+              { l:"68%", t:"20%", w:160, c:"#3a1a6c" },
+              { l:"18%", t:"52%", w:180, c:"#0d3d40" },
+              { l:"60%", t:"70%", w:170, c:"#4a2010" },
             ].map((o, i) => (
-              <div key={i} className="absolute rounded-full opacity-25"
+              <div key={i} className="absolute rounded-full opacity-20"
                 style={{ left:o.l, top:o.t, width:o.w, height:o.w,
-                  background:o.c, filter:"blur(50px)" }} />
+                  background:o.c, filter:"blur(48px)" }} />
             ))}
+          </motion.div>
+
+          {/* Near haze */}
+          <motion.div style={{ y: hazeY, willChange: "transform" }} className="absolute inset-0">
+            <div className="absolute left-10 top-32 w-72 h-72 rounded-full opacity-10 blur-3xl"
+              style={{ background: "rgba(115, 170, 255, 0.12)" }} />
+            <div className="absolute right-12 top-48 w-60 h-60 rounded-full opacity-10 blur-3xl"
+              style={{ background: "rgba(255, 190, 120, 0.1)" }} />
           </motion.div>
         </div>
 
@@ -171,7 +176,7 @@ export default function ParallaxScroll() {
           <motion.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.7 }} className="text-center">
             <h1 className="text-4xl font-bold text-slate-100 mb-2"
-              style={{ fontFamily:"'Playfair Display',serif" }}>Our Story</h1>
+            >Our Story</h1>
             <p className="text-[11px] tracking-[2px] text-slate-400/40 uppercase mb-3">Scroll to explore</p>
             <p className="pulse text-[11px] tracking-widest text-slate-400/35">▼ scroll ▼</p>
           </motion.div>
@@ -179,7 +184,7 @@ export default function ParallaxScroll() {
           {/* Cards */}
           {cards.map((card, i) => <Card key={card.id} card={card} index={i} />)}
         </div>
-      </div>
+      </section>
     </>
   );
 }

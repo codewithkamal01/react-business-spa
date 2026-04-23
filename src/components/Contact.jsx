@@ -3,7 +3,7 @@ import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaUser } from "react-icons/fa";
 
 function Contact() {
   return (
-    <section className="w-full py-12 px-4 bg-gradient-to-b from-gray-100 to-white">
+    <section className="w-full py-12 px-4 bg-slate-800">
       
       <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
         
