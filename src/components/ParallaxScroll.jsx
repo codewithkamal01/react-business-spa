@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import bgImage from "../assets/story.webp";
 
 //Data 
 const cards = [
@@ -12,7 +12,7 @@ const cards = [
           Founded in 2008, Nexora Solutions operates across 14 countries, delivering
           cutting-edge technology that empowers businesses and communities alike.
         </p>
-        <div className="flex gap-5 mt-4 pt-4 border-t border-white/[0.07]">
+        <div className="flex gap-5 mt-4 pt-4 h-28 border-t border-white/[0.07]">
           {[["14+","Countries"],["2,400","Employees"],["₹840Cr","Revenue"],["16yrs","Experience"]].map(([n,l])=>(
             <div key={l}>
               <div className="text-lg font-bold text-slate-100">{n}</div>
@@ -98,7 +98,7 @@ function Card({ card, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.25 }}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="relative rounded-2xl p-6 border border-white/10 overflow-hidden w-full max-w-lg"
+      className="relative rounded-2xl p-6 border border-white/10 overflow-hidden w-full"
       style={{ background: card.bg, backdropFilter: "blur(16px)" }}
     >
       {/* Top accent bar */}
@@ -118,12 +118,6 @@ function Card({ card, index }) {
 
 //Main 
 export default function ParallaxScroll() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const starsY  = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
-  const orbsY   = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
-  const hazeY   = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
-
   return (
     <>
       <style>{`
@@ -131,44 +125,20 @@ export default function ParallaxScroll() {
         .pulse{animation:pulse 2s infinite}
       `}</style>
 
-      <section ref={ref} className="relative overflow-hidden bg-[#0b0e1a] min-h-screen py-14">
+      <section
+        className="relative overflow-hidden bg-[#0b0e1a] min-h-screen py-5"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      >
 
-        {/* ── Parallax background ── */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          {/* Far stars */}
-          <motion.svg style={{ y: starsY, willChange: "transform" }} width="100%" height="100%"
-            className="absolute inset-0" xmlns="http://www.w3.org/2000/svg">
-            {Array.from({ length: 64 }, (_, i) => {
-              const s = i * 137.508;
-              const cx = ((s * 9301 + 49297) % 233280) / 233280 * 100;
-              const cy = ((s * 4321 + 1234) % 233280) / 233280 * 100;
-              const r  = ((s * 1234) % 100) / 100 * 1.3 + 0.25;
-              const op = ((s * 5678) % 100) / 100 * 0.45 + 0.1;
-              return <circle key={i} cx={`${cx}%`} cy={`${cy}%`} r={r} fill="#a0b4ff" opacity={op} />;
-            })}
-          </motion.svg>
-
-          {/* Midground glow orbs */}
-          <motion.div style={{ y: orbsY, willChange: "transform" }} className="absolute inset-0">
-            {[
-              { l:"8%",  t:"8%",  w:200, c:"#1a2a6c" },
-              { l:"68%", t:"20%", w:160, c:"#3a1a6c" },
-              { l:"18%", t:"52%", w:180, c:"#0d3d40" },
-              { l:"60%", t:"70%", w:170, c:"#4a2010" },
-            ].map((o, i) => (
-              <div key={i} className="absolute rounded-full opacity-20"
-                style={{ left:o.l, top:o.t, width:o.w, height:o.w,
-                  background:o.c, filter:"blur(48px)" }} />
-            ))}
-          </motion.div>
-
-          {/* Near haze */}
-          <motion.div style={{ y: hazeY, willChange: "transform" }} className="absolute inset-0">
-            <div className="absolute left-10 top-32 w-72 h-72 rounded-full opacity-10 blur-3xl"
-              style={{ background: "rgba(115, 170, 255, 0.12)" }} />
-            <div className="absolute right-12 top-48 w-60 h-60 rounded-full opacity-10 blur-3xl"
-              style={{ background: "rgba(255, 190, 120, 0.1)" }} />
-          </motion.div>
+        {/* ── Fixed business background ── */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-slate-950/60" />
         </div>
 
         {/* ── Scroll content ── */}
@@ -182,8 +152,9 @@ export default function ParallaxScroll() {
             <p className="pulse text-[11px] tracking-widest text-slate-400/35">▼ scroll ▼</p>
           </motion.div>
 
-          {/* Cards */}
-          {cards.map((card, i) => <Card key={card.id} card={card} index={i} />)}
+          <div className="grid w-full md:w-[1000px] grid-cols-1 gap-8 sm:grid-cols-2">
+            {cards.map((card, i) => <Card key={card.id} card={card} index={i} />)}
+          </div>
         </div>
       </section>
     </>

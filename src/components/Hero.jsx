@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "../assets/hero_image.png";
+import heroImage from "../assets/hero_image.jpg";
 function Hero() {
   return (
     <section id="home" className="relative h-[677px]"> 

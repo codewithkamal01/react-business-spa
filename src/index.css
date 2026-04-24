@@ -3,3 +3,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}

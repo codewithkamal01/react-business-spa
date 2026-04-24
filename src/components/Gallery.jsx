@@ -1,50 +1,58 @@
 import React, { useState } from "react";
+import photo1 from "../assets/gallery/photo-1.jpg";
+import photo2 from "../assets/gallery/photo-2.jpg";
+import photo3 from "../assets/gallery/photo-3.jpg";
+import photo4 from "../assets/gallery/photo-4.jpg";
+import photo5 from "../assets/gallery/photo-5.jpg";
+import photo6 from "../assets/gallery/photo-6.jpg";
+import photo7 from "../assets/gallery/photo-7.jpg";
+import photo8 from "../assets/gallery/photo-8.jpg";
+import photo9 from "../assets/gallery/photo-9.jpg";
 
 function Gallery() {
   const [selected, setSelected] = useState(null);
 
   const images = [
     {
-      img: "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+      img: photo1,
       title: "Team Collaboration",
     },
     {
-      img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+      img: photo2,
       title: "Office Meeting",
     },
     {
-      img: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+      img: photo3,
       title: "Work Culture",
-      short: true,
     },
     {
-      img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      img: photo4,
       title: "Coding Session",
     },
     {
-      img: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
+      img: photo5,
       title: "Client Discussion",
     },
     {
-      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+      img: photo6,
       title: "Team Bonding",
     },
     {
-      img: "https://images.unsplash.com/photo-1543269865-cbf427effbad",
+      img: photo7,
       title: "Office Party",
     },
     {
-      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+      img: photo8,
       title: "Workspace Setup",
     },
     {
-      img: "https://images.unsplash.com/photo-1551434678-e076c223a692",
+      img: photo9,
       title: "Quick Standup Meeting",
     },
   ];
 
   return (
-    <section id="gallery" className="py-10 px-4 bg-gray-900">
+    <section id="gallery" className="gallery py-10 px-4 bg-gray-900">
       <h2 className="text-3xl text-white font-bold text-center mb-10">
         Our Work Gallery
       </h2>
