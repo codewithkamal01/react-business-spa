@@ -2,12 +2,12 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import SpecialityCard from "../components/SpecialityCard";
-// import About from "../components/About";
 import USPSection from "../components/USPSection";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import ParallaxScroll from "../components/ParallaxScroll";
+import Services from "../components/Services";
 
 function Home() {
   return (
@@ -15,8 +15,8 @@ function Home() {
       <Navbar />
       <Hero />
       <SpecialityCard />
-      {/* <About /> */}
       <ParallaxScroll/>
+      <Services/>
       <USPSection />
       <Gallery />
       <Contact />

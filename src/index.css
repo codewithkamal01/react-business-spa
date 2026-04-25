@@ -9,3 +9,15 @@ html {
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
+body {
+  cursor: none;
+}
+
+.magnetic {
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}

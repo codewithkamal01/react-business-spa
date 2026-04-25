@@ -1,9 +1,14 @@
 import React from "react";
 import heroImage from "../assets/hero_image.jpg";
+
 function Hero() {
   return (
-    <section id="home" className="relative h-[677px]"> 
-      <img className="w-full h-full object-cover object-[70%_20%]" src={heroImage} alt="hero" />
+    <section id="home" className="relative h-[677px]">
+      <img
+        className="w-full h-full object-cover object-[70%_20%]"
+        src={heroImage}
+        alt="hero"
+      />
       <div className="absolute inset-0 bg-black/40 flex items-center">
         <h2 className="text-white pl-10 md:pl-15 uppercase text-4xl md:text-6xl font-bold">
           Grow Your Business <br />{" "}

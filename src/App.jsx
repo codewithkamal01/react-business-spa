@@ -1,11 +1,12 @@
 import React from 'react'
 import Home from './pages/Home'
+import MouseTracker from './components/MouseTracker'
 
 function App() {
   return (
-    <div>
+    <MouseTracker>
       <Home/>
-    </div>
+    </MouseTracker>
   )
 }
 
