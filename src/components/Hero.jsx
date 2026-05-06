@@ -4,7 +4,7 @@ import heroImage from "../assets/hero_image.jpg";
 
 function Hero() {
   return (
-    <section id="home" className="relative h-[677px] overflow-hidden">
+    <section id="home" className="relative h-screen overflow-hidden">
       <img
         className="w-full h-full object-cover object-[70%_20%]"
         src={heroImage}
