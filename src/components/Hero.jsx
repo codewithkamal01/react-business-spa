@@ -8,7 +8,7 @@ function Hero() {
       <img
         className="w-full h-full object-cover object-[70%_20%]"
         src={heroImage}
-        alt="hero"
+        alt="hero"  
       />
 
       <div className="absolute inset-0 bg-black/50 flex items-center">

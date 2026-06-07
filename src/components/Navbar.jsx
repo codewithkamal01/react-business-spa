@@ -16,8 +16,14 @@ function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-black/40 border-b border-white/20 shadow-[0_0_15px_rgba(0,0,0,0.2)]">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-2 py-1">
-          <img src={Logo} alt="Logo" className="h-10" />
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-2">
+          {/* Logo + Name */}
+          <div className="flex items-center gap-2">
+            <img src={Logo} alt="Logo" className="h-10 w-auto" />
+            <h1 className="text-white text-xl md:text-2xl font-bold">
+              Creyo<span className="text-blue-400">tech</span>
+            </h1>
+          </div>
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex gap-6 text-sm font-medium text-slate-300">

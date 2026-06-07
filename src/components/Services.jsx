@@ -41,7 +41,7 @@ const services = [
 
 function Services() {
   return (
-    <div className="bg-gray-900 py-16 px-6">
+    <div id="services" className="bg-gray-900 py-16 px-6">
       <h2 className="text-3xl font-bold text-center text-white mb-12">
         Our Services
       </h2>
